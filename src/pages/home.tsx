@@ -5,6 +5,8 @@ import { FaStar } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
 import { LineChart } from "@mui/x-charts";
 import { useEffect, useRef, useState } from "react";
+import Footer from "@/components/footer";
+
 
 const Home = () => {
   const containerRef = useRef<HTMLDivElement>(null); // Reference to the parent container
@@ -126,7 +128,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+      <Footer />
     </div>
   );
 };
