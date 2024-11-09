@@ -65,14 +65,20 @@ const Marketplace: React.FC = () => {
             </Button>
 
             {isCameraOpen && (
-                <div style={{ marginBottom: '20px' }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    marginBottom: '20px'
+                }}>
                     <Webcam
                         audio={false}
                         ref={webcamRef}
                         screenshotFormat="image/jpeg"
                         width="100%"
                         videoConstraints={{
-                            facingMode: "environment"
+                            facingMode: 'environment'
                         }}
                     />
                     <Button
@@ -88,14 +94,29 @@ const Marketplace: React.FC = () => {
             {/* List of Items */}
             <div>
                 {items.map((item, index) => (
-                    <div key={index} style={{ marginBottom: '20px', textAlign: 'left' }}>
-                        <p><strong>{item.objectName}</strong></p>
-                        {item.image && <img src={item.image} alt="Captured" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />}
-                        <p>Units: {item.units}</p>
-                        <p>Price per unit: Rs{item.price}</p>
+                    <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', textAlign: 'left', width: '80%', maxWidth: '600px' }}>
+                        {item.image && (
+                            <img
+                                src={item.image}
+                                alt="Captured"
+                                style={{
+                                    width: '100px',
+                                    height: '100px',
+                                    objectFit: 'cover',
+                                    marginRight: '20px' // Adds space between image and text
+                                }}
+                            />
+                        )}
+                        <div>
+                            <p><strong>{item.objectName}</strong></p>
+                            <p>Units: {item.units}</p>
+                            <p>Price per unit: Rs{item.price}</p>
+                        </div>
                     </div>
                 ))}
             </div>
+
+
 
             <Dialog
                 open={isModalOpen}
