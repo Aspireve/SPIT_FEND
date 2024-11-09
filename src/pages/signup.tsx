@@ -77,7 +77,7 @@ const SignUpPage: React.FC = () => {
         <Container>
             <FormWrapper>
                 <Logo
-                    src="src/assets/bio-energy.png"
+                    src="src/assets/images/bio-energy.png"
                     alt="Green Logo"
                 />
                 <Title>Sign Up</Title>
@@ -108,6 +108,9 @@ const SignUpPage: React.FC = () => {
                     />
                     <SubmitButton type="submit">Sign Up</SubmitButton>
                 </form>
+                <div>
+                    Already have an account? <a href="/login">Login</a>
+                </div>
             </FormWrapper>
         </Container>
     );

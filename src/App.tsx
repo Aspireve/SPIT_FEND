@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import SurveyForm from "./pages/survey";
@@ -7,6 +6,7 @@ import SignUpPage from "./pages/signup";
 import EcoPoints from "./pages/ecopoint";
 import EcoLevelSystem from "./pages/ecolevelsystem";
 import LeaderBoard from "./pages/leaderboard";
+import Marketplace from "./pages/marketplace";
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/ecopoint" element={<EcoPoints />} />
         <Route path="/ecolevelsystem" element={<EcoLevelSystem />} />
+        <Route path="/marketplace" element={<Marketplace />} />
       </Routes>
     </BrowserRouter>
   );
