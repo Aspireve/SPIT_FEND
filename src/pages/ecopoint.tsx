@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ecopoint.css";
 const EcoPoints = () => {
-    const [currentPoints, setCurrentPoints] = useState(500); // Dummy starting points
+    const [currentPoints, setCurrentPoints] = useState(5500); // Dummy starting points
     interface Voucher {
         id: number;
         name: string;

@@ -26,6 +26,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .nav-buttons button {
@@ -34,14 +35,14 @@ header {
     background-color: #4caf50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
 .voucher-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
     justify-content: center;
 }
