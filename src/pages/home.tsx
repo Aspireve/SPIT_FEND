@@ -1,8 +1,3 @@
-import { FaHome } from "react-icons/fa";
-import { FaStore } from "react-icons/fa";
-import { PiRankingBold } from "react-icons/pi";
-import { FaUserCircle } from "react-icons/fa";
-import { FaCamera } from "react-icons/fa";
 import { RiMenu2Line } from "react-icons/ri";
 import { PiCoinVerticalFill } from "react-icons/pi";
 import { FaRegBell } from "react-icons/fa6";
@@ -59,13 +54,13 @@ const Home = () => {
       </section>
       <div className="-z-0 fixed bottom-0 h-3/4 w-full bg-[#f2f3f7] rounded-se-[5rem] rounded-ss-[5rem]"></div>
       <section className="relative bg-[#f3f4f9] h-56 w-56 m-auto rounded-lg shadow-lg z-30 mt-9 flex items-center justify-center">
-        <div className="p-5 bg-[#000] bg-gradient-to-tr from-[#80c678] to-[#3fb36a] rounded-full h-fit w-fit ">
-          <div className=" rounded-full bg-white flex items-center justify-center h-fit w-fit p-8">
+        <div className="p-5 bg-[#000] bg-gradient-to-tr from-[#80c678] to-[#3fb36a] rounded-full h-fit w-fit shadow-lg">
+          <div className=" rounded-full bg-white flex items-center justify-center h-fit w-fit p-8 shadow-lg">
             <img src="./bio-energy.png" className="h-20 w-20" />
           </div>
         </div>
       </section>
-      <section className="relative w-11/12 m-auto mt-5 pb-28">
+      <section className="text-black relative w-11/12 m-auto mt-5 pb-28">
         <h2 className="font-semibold text-lg">Your Statistics</h2>
         <div className="grid grid-cols-2 grid-rows-2 gap-4 mt-5">
           <div
@@ -107,7 +102,7 @@ const Home = () => {
               </svg>
             </LineChart>
             <p className="absolute top-5 inline">Energy</p>
-            <h1 className="absolute font-bold text-4xl inline bottom-2">421</h1>
+            <h1 className="absolute font-bold text-4xl inline bottom-2 text-black">421</h1>
           </div>
           <div className="col-span-1 row-span-1 flex flex-col bg-white shadow-2xl p-4 rounded-xl">
             <div className="flex gap-1">
@@ -115,7 +110,7 @@ const Home = () => {
               <p>Rewards</p>
             </div>
             <div className="flex items-end gap-2">
-              <h1 className="font-bold text-4xl inline">421</h1>
+              <h1 className="font-bold text-4xl inline text-black">421</h1>
               <p className="inline">rupees</p>
             </div>
           </div>
@@ -125,36 +120,13 @@ const Home = () => {
               <p>Eco Points</p>
             </div>
             <div className="flex items-end gap-2">
-              <h1 className="font-bold text-4xl inline">61</h1>
+              <h1 className="font-bold text-4xl inline text-black">61</h1>
               <p className="inline">points</p>
             </div>
           </div>
         </div>
       </section>
-      <nav className="fixed bottom-0 w-full flex bg-white justify-between px-5 py-2 pt-3">
-        <div className=" absolute -top-1/2 right-1/2 translate-x-1/2 w-16 bg-gradient-to-b from-transparent to-[#f2f3f7] rounded-ee-full rounded-es-full h-16 flex items-center justify-center">
-          <div className="flex items-center justify-center rounded-full border-4 border-white shadow-lg flex-col bg-[#177d54] p-3 ">
-            <FaCamera size={20} color="#fff" className="shadow-md" />
-          </div>
-        </div>
-        <div className="flex flex-1 items-center flex-col text-[#177d54]">
-          <FaHome size={20} color="#177d54" />
-          <p className="text-sm">Home</p>
-        </div>
-        <div className="flex flex-1 items-center flex-col">
-          <PiRankingBold size={20} />
-          <p className="text-sm">Rank</p>
-        </div>
-        <div className="flex-[0.5]"></div>
-        <div className="flex flex-1 items-center flex-col">
-          <FaStore size={20} />
-          <p className="text-sm">Market</p>
-        </div>
-        <div className="flex flex-1 items-center flex-col">
-          <FaUserCircle size={20} />
-          <p className="text-sm">Profile</p>
-        </div>
-      </nav>
+      
     </div>
   );
 };
