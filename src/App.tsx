@@ -5,6 +5,7 @@ import LoginPage from "./pages/login";
 import SignUpPage from "./pages/signup";
 import EcoPoints from "./pages/ecopoint";
 import EcoLevelSystem from "./pages/ecolevelsystem";
+import LeaderBoard from "./pages/leaderboard";
 import Marketplace from "./pages/marketplace";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/survey" element={<SurveyForm />} />
+        <Route path="/leaderboard" element={<LeaderBoard />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/ecopoint" element={<EcoPoints />} />
