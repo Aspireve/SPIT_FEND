@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.6",
+    "@mui/styled-engine-sc": "^6.1.6",
+    "@mui/x-charts": "^7.22.2",
     "@types/styled-components": "^5.1.34",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
