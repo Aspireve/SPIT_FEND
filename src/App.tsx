@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import SurveyForm from "./pages/survey";
 import LoginPage from "./pages/login";
 import SignUpPage from "./pages/signup";
+import EcoPoints from "./pages/ecopoint";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/survey" element={<SurveyForm />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/ecopoint" element={<EcoPoints />} />
       </Routes>
     </BrowserRouter>
   );

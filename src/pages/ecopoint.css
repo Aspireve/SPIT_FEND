@@ -1,0 +1,154 @@
+.eco-points-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    color: #4caf50;
+    font-size: 2.3rem;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.points-display {
+    font-size: 18px;
+    color: #4caf50;
+    font-size: 1.7rem;
+    font-weight: 500;
+
+
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.voucher-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.voucher-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    /* This is the key to position the badge inside the card */
+}
+
+.voucher-card:hover {
+    transform: scale(1.05);
+}
+
+/* Update the badge positioning to be absolute */
+.voucher-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    position: absolute;
+    top: 0px;
+    /* Position it at the top */
+    right: 0.3px;
+    /* Position it at the right */
+    z-index: 1;
+    /* Ensure it stays above the image */
+}
+
+/* Styles for the badge itself */
+.badge {
+    display: inline-block;
+    background-color: #000000;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.badge-icon {
+    margin-right: 5px;
+}
+
+/* Adjust the image and content to not overlap with the badge */
+.voucher-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.voucher-content {
+    padding: 15px;
+    text-align: left;
+}
+.category {
+    font-size: 12px;
+    font-weight: bold;
+    color: #4caf50;
+    text-transform: uppercase;
+}
+
+h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.voucher-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.points-cost {
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.redeem-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.redeem-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.redeemed-label {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.no-vouchers {
+    font-size: 16px;
+    color: #757575;
+    text-align: center;
+    margin-top: 20px;
+}
