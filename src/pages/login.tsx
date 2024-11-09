@@ -79,7 +79,7 @@ const LoginPage: React.FC = () => {
         <Container>
             <FormWrapper>
                 <Logo
-                    src="src/assets/bio-energy.png"
+                    src="src/assets/images/bio-energy.png"
                     alt="Green Logo"
                 />
                 <Title>Login Page</Title>
@@ -98,6 +98,9 @@ const LoginPage: React.FC = () => {
                     />
                     <SubmitButton type="submit">Login</SubmitButton>
                 </form>
+                <div>
+                    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+                </div>
             </FormWrapper>
         </Container>
     );
