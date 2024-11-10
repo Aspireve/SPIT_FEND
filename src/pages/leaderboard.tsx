@@ -18,8 +18,8 @@ const LeaderBoard = () => {
   return (
     <div className="h-full w-full bg-[#f2f3f7]">
       <section className="flex justify-between px-5 py-4 pb-3">
-        <IoArrowBack size={24} color="#177d54" onClick={() => navigate(-1)} />
-        <FaCamera size={24} color="#177d54" />
+        {/* <IoArrowBack size={24} color="#177d54" onClick={() => navigate(-1)} /> */}
+        {/* <FaCamera size={24} color="#177d54" /> */}
       </section>
       <section className="w-11/12 m-auto mb-20">
         <h1 className="text-xl font-semibold text-left text-black">
@@ -83,8 +83,8 @@ const LeaderBoard = () => {
                 className="w-16 h-16 rounded-full border-2 border-[#ff6f05] mt-8"
               />
             </div>
-            <p className="text-lg font-bold text-center">Chirag</p>
-            <p className="text-sm font-semibold text-[#ff6f05]">2200 Points</p>
+            <p className="text-lg font-bold text-center">Tanay</p>
+            <p className="text-sm font-semibold text-[#ff6f05]">2800 Points</p>
             <p className="text-sm text-center">Activist of the month</p>
           </div>
           {/* Third */}

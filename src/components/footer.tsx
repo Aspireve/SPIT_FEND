@@ -22,7 +22,7 @@ const Footer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [respData, setRespData] = useState(false);
-  const [gphData, setGphData] = useState()
+  const [gphData, setGphData] = useState();
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -60,7 +60,7 @@ const Footer = () => {
         .get("fetchChart/electric")
         .then((data) => {
           console.log(data);
-          setGphData(data?.data?.units?.map((u) => parseInt(u.units)))
+          setGphData(data?.data?.units?.map((u) => parseInt(u.units)));
           // setRespData(data.data?.electricData);
           // setCapturedImage(imageSrc);
         })
@@ -212,7 +212,7 @@ const Footer = () => {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={handleModalClose}>Cancel</Button>
+            {/* <Button onClick={handleModalClose}>Cancel</Button> */}
             <Button variant="contained" onClick={handleSubmit}>
               Close
             </Button>

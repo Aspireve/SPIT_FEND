@@ -15,14 +15,12 @@ const Profile = () => {
   // const [water, setWater] = useState(null);
   // const [electricity, setElectricity] = useState(null);
   useEffect(() => {
-    axiosInstance
-      .get("fetchChart/electric")
-      .then((data) => {
-        console.log(data);
-        setElectricity(data?.data?.units?.map((u) => parseInt(u.units)));
-        // setRespData(data.data?.electricData);
-        // setCapturedImage(imageSrc);
-      })
+    axiosInstance.get("fetchChart/electric").then((data) => {
+      console.log(data);
+      setElectricity(data?.data?.units?.map((u) => parseInt(u.units)));
+      // setRespData(data.data?.electricData);
+      // setCapturedImage(imageSrc);
+    });
   }, []);
 
   const navigate = useNavigate();
@@ -30,10 +28,10 @@ const Profile = () => {
     <div className="h-full w-full bg-[#f2f3f7]">
       <section className="flex justify-between px-5 py-4 pb-3">
         <IoArrowBack size={24} color="#177d54" onClick={() => navigate(-1)} />
-        <FaCamera size={24} color="#177d54" />
+        {/* <FaCamera size={24} color="#177d54" /> */}
       </section>
       <div style={{ padding: "24px", paddingBottom: "60px" }}>
-        <h1 className="font-bold text-xl text-black">Profile Ananlytics</h1>
+        <h1 className="text-xl font-bold text-black">Profile Ananlytics</h1>
         <div style={{ padding: "24px" }}>
           <Card style={{ maxWidth: 800, margin: "0 auto" }}>
             <EcoPointsPieChart />
@@ -41,7 +39,7 @@ const Profile = () => {
         </div>
         <div style={{ maxWidth: "800px", margin: "20px auto" }}>
           <div style={{ marginBottom: "1.875rem" }}>
-            <ElectricityTrend topData={electricity}/>
+            <ElectricityTrend topData={electricity} />
           </div>
           <div style={{ marginBottom: "1.875rem" }}>
             <WaterTrend />

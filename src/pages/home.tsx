@@ -1,4 +1,3 @@
-import { RiMenu2Line } from "react-icons/ri";
 import { PiCoinVerticalFill } from "react-icons/pi";
 import { FaRegBell, FaStar, FaRupeeSign } from "react-icons/fa";
 import { LineChart } from "@mui/x-charts";
@@ -7,6 +6,7 @@ import { GiNuclearWaste } from "react-icons/gi";
 import { FaLeaf, FaBolt, FaTrashAlt, FaSun } from "react-icons/fa"; // Ensure these icons are correctly imported
 import Footer from "@/components/footer";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "@/lib/axiosInstance";
 
 const facts = [
   {
@@ -48,6 +48,8 @@ const facts = [
 const Home = () => {
   const containerRef = useRef<HTMLDivElement>(null); // Reference to the parent container
   const [containerWidth, setContainerWidth] = useState(0); // State to hold the width
+  const [ecoScore, setecoScore] = useState("");
+  const [avgUnits, setavgUnits] = useState("");
 
   useEffect(() => {
     // Function to update the width of the container
@@ -81,11 +83,35 @@ const Home = () => {
     );
   };
 
+  const getEcoScore = async () => {
+    await axiosInstance.get("scan/ecoScore").then((data) => {
+      // console.log(data);
+      const val = parseFloat(`${data.data.ecoScore || 0}`);
+      setecoScore(val.toFixed(2));
+    });
+  };
+
+  const getAverageEcoScore = async () => {
+    await axiosInstance.get("scan/avgUnits").then((data) => {
+      // console.log(data.data);
+      const val = parseFloat(`${data.data.averageUnits || 0}`);
+      setavgUnits(val.toFixed(2));
+    });
+  };
+
+  useEffect(() => {
+    getEcoScore();
+    getAverageEcoScore();
+  }, []);
+
   return (
     <div className="h-screen w-full bg-[#f2f3f7] bg-gradient-to-br from-[#04894a] to-[#0f8951]">
       <section className="flex justify-between px-5 py-4 pb-3">
-        <div className="flex items-center justify-center gap-2">
-          <RiMenu2Line color="#fff" size={20} />
+        <div
+          onClick={() => navigate("/profile")}
+          className="flex items-center justify-center gap-2"
+        >
+          {/* <RiMenu2Line color="#fff" size={20} /> */}
           <img
             src="./profile.jpeg"
             className="w-8 h-8 border-4 border-[#fff6]  rounded-md object-cover"
@@ -93,14 +119,14 @@ const Home = () => {
           <div>
             <p className="text-xs text-white">Afternoon,</p>
             <h1 className="text-base font-semibold leading-5 text-white">
-              Johnn Doe
+              Tanay
             </h1>
           </div>
         </div>
         <div className="flex items-center justify-center gap-2">
           <div className="bg-[#fff3] flex gap-2 items-center justify-center p-1 px-2">
             <PiCoinVerticalFill size={20} color="#ecc355" />
-            <p className="font-semibold text-white">345</p>
+            <p className="font-semibold text-white">{ecoScore}</p>
           </div>
           <FaRegBell size={20} color="#fff" />
         </div>
@@ -109,7 +135,7 @@ const Home = () => {
       <section className="relative bg-[#f3f4f9] h-56 w-56 m-auto rounded-lg shadow-lg z-30 mt-9 flex items-center justify-center">
         <div className="p-5 bg-[#000] bg-gradient-to-tr from-[#80c678] to-[#3fb36a] rounded-full h-fit w-fit shadow-lg">
           <div
-            className="flex items-center justify-center p-8 bg-white rounded-full shadow-lg  h-fit w-fit"
+            className="flex items-center justify-center p-8 bg-white rounded-full shadow-lg h-fit w-fit"
             onClick={() => navigate("/ecolevelsystem")}
           >
             <img src="./bio-energy.png" className="w-20 h-20" />
@@ -117,7 +143,9 @@ const Home = () => {
         </div>
       </section>
       <section className="relative w-11/12 pb-10 m-auto mt-5 text-black">
-        <h2 className="text-lg font-semibold">Your Statistics</h2>
+        <h2 className="text-lg font-semibold w-[100vw] text-center">
+          Your Statistics
+        </h2>
         <div className="grid grid-cols-2 grid-rows-2 gap-4 mt-5">
           <div
             ref={containerRef}
@@ -159,7 +187,7 @@ const Home = () => {
             </LineChart>
             <p className="absolute inline top-5">Energy</p>
             <h1 className="absolute inline text-4xl font-bold text-black bottom-2">
-              421
+              {avgUnits}
             </h1>
           </div>
           <div className="flex flex-col col-span-1 row-span-1 p-4 bg-white shadow-2xl rounded-xl">
@@ -174,14 +202,16 @@ const Home = () => {
           </div>
           <div
             className="flex flex-col col-span-1 row-span-1 p-4 bg-white shadow-2xl rounded-xl"
-            onClick={() => navigate("/ecolevelsystem")}
+            onClick={() => navigate("/ecopoint")}
           >
             <div className="flex gap-1">
               <FaStar size={20} color="#ecc355" />
-              <p>Eco Points</p>
+              <p>Eco Points </p>
             </div>
             <div className="flex items-end gap-2">
-              <h1 className="inline text-4xl font-bold text-black">345</h1>
+              <h1 className="inline text-4xl font-bold text-black">
+                {ecoScore}
+              </h1>
               <p className="inline">points</p>
             </div>
           </div>
@@ -189,7 +219,9 @@ const Home = () => {
       </section>
 
       <section className="relative w-11/12 m-auto text-black pb-28">
-        <h2 className="text-lg font-semibold">Did You Know?</h2>
+        <h2 className="text-lg font-semibold w-[100vw] text-center">
+          Did You Know?
+        </h2>
         <div className="flex items-center justify-center p-4 mt-4 bg-white shadow-2xl rounded-xl">
           <button
             onClick={handlePrevFact}

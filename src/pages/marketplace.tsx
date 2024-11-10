@@ -32,13 +32,11 @@ const Marketplace: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [uploadResponse, setUploadResponse] = useState(null);
   const [uploadError, setUploadError] = useState(null);
-  const [responseData, setResponseData] = useState()
+  const [responseData, setResponseData] = useState();
 
   const handleAddItemClick = () => {
     setIsCameraOpen(true);
   };
-
-
 
   const base64ToBlob = (base64, mimeType = "image/png") => {
     const byteCharacters = atob(base64);
@@ -61,13 +59,13 @@ const Marketplace: React.FC = () => {
 
       // Convert Base64 string to a Blob
       const blob = base64ToBlob(base64Data, "image/png");
-      formData.append("image", blob, 'image.png');
+      formData.append("image", blob, "image.png");
       await axiosInstance
         .post("marketplace/isRecycleable", formData)
         .then((data) => {
           console.log(data);
-          setResponseData(data.data.response)
-          console.log(data.data.response.itemDescription)
+          setResponseData(data.data.response);
+          console.log(data.data.response.itemDescription);
           setObjectName(`${data.data.response.itemDescription}`);
           setPrice(`${data.data.response.price}`);
           setCapturedImage(imageSrc);
@@ -99,7 +97,7 @@ const Marketplace: React.FC = () => {
   // Function to handle image upload to the backend
   const handleImageUpload = async () => {
     if (!capturedImage) {
-      alert("Please capture an image first.");
+      alert("An APB has been sent out!");
       return;
     }
 
@@ -131,7 +129,7 @@ const Marketplace: React.FC = () => {
   return (
     <div className="bg-gradient-to-br from-[#04894a] to-[#0f8951] min-h-screen">
       <div className="flex items-center gap-4 px-5 py-4 text-white">
-        <IoIosArrowBack color="#fff" size={20} onClick={() => navigate(-1)} />
+        {/* <IoIosArrowBack color="#fff" size={20} onClick={() => navigate(-1)} /> */}
         <h1 className="text-lg font-semibold text-left text-white">
           Marketplace
         </h1>
@@ -244,7 +242,7 @@ const Marketplace: React.FC = () => {
             marginTop: "10px",
           }}
         >
-          Upload Electric Bill
+          Send an APB
         </Button>
 
         {uploadResponse && (
@@ -260,13 +258,13 @@ const Marketplace: React.FC = () => {
           </div>
         )}
         <div className="w-[90%] ml-auto mt-5">
-          <h5 className="text-lg text-left font-semibold ">
+          <h5 className="text-lg font-semibold text-left ">
             Select your recycling partner
           </h5>
-          <div className="flex overflow-scroll gap-5 mt-5">
+          <div className="flex gap-5 mt-5 overflow-scroll">
             <div className="w-[300vw] flex gap-5">
               <div className="h-48 w-48 bg-[url('./SKScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
+                <p className="z-10 font-bold text-left text-white">
                   S.K Scrap Traders
                 </p>
                 <p className="text-left text-[#fff] z-10 text-sm">
@@ -274,7 +272,7 @@ const Marketplace: React.FC = () => {
                 </p>
               </div>
               <div className="h-48 w-48 bg-[url('./Battery-Scrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
+                <p className="z-10 font-bold text-left text-white">
                   Khan Scrap Dealer
                 </p>
                 <p className="text-left text-[#fff] z-10 text-sm">
@@ -282,7 +280,7 @@ const Marketplace: React.FC = () => {
                 </p>
               </div>
               <div className="h-48 w-48 bg-[url('./KhanScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
+                <p className="z-10 font-bold text-left text-white">
                   S.K V EWaste Traders
                 </p>
                 <p className="text-left text-[#fff] z-10 text-sm">
@@ -290,7 +288,7 @@ const Marketplace: React.FC = () => {
                 </p>
               </div>
               <div className="h-48 w-48 bg-[url('./BangarBecho.png')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
+                <p className="z-10 font-bold text-left text-white">
                   Bhangar Becho
                 </p>
                 <p className="text-left text-[#fff] z-10 text-sm">

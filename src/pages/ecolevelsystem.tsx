@@ -174,13 +174,13 @@ const EcoLevelSystem = ({ score = 2800 }) => {
   };
 
   const progress = getProgressToNext(score, currentLevel);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6 bg-[#f2f3f7]">
-      <section className="px-5 py-4 pb-3 flex justify-between">
+      <section className="flex justify-between px-5 py-4 pb-3">
         <IoArrowBack size={24} color="#177d54" onClick={() => navigate(-1)} />
-        <FaCamera size={24} color="#177d54" />
+        {/* <FaCamera size={24} color="#177d54" /> */}
       </section>
       {/* Current Level Card */}
       <Card className={`mx-4 border-2 ${currentLevel.bgColor}`}>
@@ -201,15 +201,15 @@ const EcoLevelSystem = ({ score = 2800 }) => {
               <h3 className={`text-xl font-bold ${currentLevel.color}`}>
                 {currentLevel.title}
               </h3>
-              <p className="text-gray-600 italic">{currentLevel.tagline}</p>
+              <p className="italic text-gray-600">{currentLevel.tagline}</p>
               <div className="mt-2">
-                <div className="h-2 w-full bg-gray-200 rounded-full">
+                <div className="w-full h-2 bg-gray-200 rounded-full">
                   <div
                     className={`h-2 rounded-full ${currentLevel.bgColor} ${currentLevel.color}`}
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="mt-1 text-sm text-gray-500">
                   {progress}% to next level
                 </p>
               </div>
@@ -219,7 +219,7 @@ const EcoLevelSystem = ({ score = 2800 }) => {
       </Card>
 
       {/* Level Progress System */}
-      <div className="mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
+      <div className="grid grid-cols-1 gap-4 mx-4 mb-20 md:grid-cols-2 lg:grid-cols-3">
         {levels.map((level, index) => (
           <Card
             key={index}
@@ -240,7 +240,7 @@ const EcoLevelSystem = ({ score = 2800 }) => {
                     {level.range[0]}-
                     {level.range[1] === 99999 ? "∞" : level.range[1]} points
                   </p>
-                  <p className="text-xs text-gray-500 italic">
+                  <p className="text-xs italic text-gray-500">
                     {level.tagline}
                   </p>
                 </div>

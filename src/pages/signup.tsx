@@ -75,7 +75,7 @@ const SignUpPage: React.FC = () => {
   const onSubmit = async (data: FormValues) => {
     console.log("Sign Up Data:", data);
     await axiosInstance.post("/auth/register", data);
-    navigate("/home");
+    navigate("/survey");
   };
 
   return (

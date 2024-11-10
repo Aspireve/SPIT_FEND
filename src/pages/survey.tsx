@@ -1,6 +1,7 @@
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import styled from 'styled-components';
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #f2f3f7;
@@ -90,146 +91,150 @@ const SubmitButton = styled.button`
 `;
 
 type FormValues = {
-    homeSize: string;
-    address: string;
-    region: { state: string; city: string };
-    familyMembers: number;
-    childrenBelow18: number;
-    dailyLifestyle: string;
-    ecoMotivations: string[];
-    futureGoals: string;
-    adviceTools: string;
+  homeSize: string;
+  address: string;
+  region: { state: string; city: string };
+  familyMembers: number;
+  childrenBelow18: number;
+  dailyLifestyle: string;
+  ecoMotivations: string[];
+  futureGoals: string;
+  adviceTools: string;
 };
 
 const SurveyForm: React.FC = () => {
-    const { register, handleSubmit, control } = useForm<FormValues>({
-        defaultValues: {
-            region: { state: '', city: '' },
-            ecoMotivations: [],
-        },
-    });
+  const navigate = useNavigate();
+  const { register, handleSubmit, control } = useForm<FormValues>({
+    defaultValues: {
+      region: { state: "", city: "" },
+      ecoMotivations: [],
+    },
+  });
 
-    const onSubmit = (data: FormValues) => {
-        console.log('Form Data:', data);
-    };
+  const onSubmit = (data: FormValues) => {
+    console.log("Form Data:", data);
+    navigate("/home");
+  };
 
-    const homeSizeOptions = ['1BHK', '2BHK', '3BHK', '4+ BHK'];
-    const dailyLifestyleOptions = [
-        'Very eco-conscious',
-        'Moderately eco-conscious',
-        'Limited awareness',
-        'Not eco-conscious',
-    ];
+  const homeSizeOptions = ["1BHK", "2BHK", "3BHK", "4+ BHK"];
+  const dailyLifestyleOptions = [
+    "Very eco-conscious",
+    "Moderately eco-conscious",
+    "Limited awareness",
+    "Not eco-conscious",
+  ];
 
-    return (
-        <Container>
-            <FormWrapper>
-                <Title>Household Survey Form</Title>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Label>Home Size</Label>
-                    <Select {...register('homeSize')}>
-                        {homeSizeOptions.map((size, index) => (
-                            <option key={index} value={size}>
-                                {size}
-                            </option>
-                        ))}
-                    </Select>
+  return (
+    <Container>
+      <FormWrapper>
+        <Title>Household Survey Form</Title>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Label>Home Size</Label>
+          <Select {...register("homeSize")}>
+            {homeSizeOptions.map((size, index) => (
+              <option key={index} value={size}>
+                {size}
+              </option>
+            ))}
+          </Select>
 
-                    <Label>Address</Label>
-                    <Input {...register('address')} placeholder="Enter your address" />
+          <Label>Address</Label>
+          <Input {...register("address")} placeholder="Enter your address" />
 
-                    <Label>State</Label>
-                    <Input {...register('region.state')} placeholder="Enter state" />
+          <Label>State</Label>
+          <Input {...register("region.state")} placeholder="Enter state" />
 
-                    <Label>City</Label>
-                    <Input {...register('region.city')} placeholder="Enter city" />
+          <Label>City</Label>
+          <Input {...register("region.city")} placeholder="Enter city" />
 
-                    <Label>Number of Family Members</Label>
-                    <Input
-                        type="number"
-                        {...register('familyMembers')}
-                        placeholder="Enter number"
-                    />
+          <Label>Number of Family Members</Label>
+          <Input
+            type="number"
+            {...register("familyMembers")}
+            placeholder="Enter number"
+          />
 
-                    <Label>Number of Children Below 18</Label>
-                    <Input
-                        type="number"
-                        {...register('childrenBelow18')}
-                        placeholder="Enter number"
-                    />
+          <Label>Number of Children Below 18</Label>
+          <Input
+            type="number"
+            {...register("childrenBelow18")}
+            placeholder="Enter number"
+          />
 
-                    <Label>Daily Lifestyle</Label>
-                    {dailyLifestyleOptions.map((option, index) => (
-                        <RadioLabel key={index}>
-                            <input
-                                type="radio"
-                                value={option}
-                                {...register('dailyLifestyle')}
-                            />
-                            {option}
-                        </RadioLabel>
-                    ))}
+          <Label>Daily Lifestyle</Label>
+          {dailyLifestyleOptions.map((option, index) => (
+            <RadioLabel key={index}>
+              <input
+                type="radio"
+                value={option}
+                {...register("dailyLifestyle")}
+              />
+              {option}
+            </RadioLabel>
+          ))}
 
-                    <Label>Eco Motivations</Label>
-                    <Controller
-                        name="ecoMotivations"
-                        control={control}
-                        render={({ field }) => (
-                            <>
-                                <CheckboxLabel>
-                                    <input
-                                        type="checkbox"
-                                        value="Better planet"
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            const checked = e.target.checked;
-                                            field.onChange(
-                                                checked
-                                                    ? [...field.value, value]
-                                                    : field.value.filter((v) => v !== value)
-                                            );
-                                        }}
-                                        checked={field.value.includes("Better planet")}
-                                    />
-                                    A desire to contribute to a better planet
-                                </CheckboxLabel>
-                                <CheckboxLabel>
-                                    <input
-                                        type="checkbox"
-                                        value="Cost savings"
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            const checked = e.target.checked;
-                                            field.onChange(
-                                                checked
-                                                    ? [...field.value, value]
-                                                    : field.value.filter((v) => v !== value)
-                                            );
-                                        }}
-                                    />
-                                    Long-term cost savings
-                                </CheckboxLabel>
-                            </>
-                        )}
-                    />
+          <Label>Eco Motivations</Label>
+          <Controller
+            name="ecoMotivations"
+            control={control}
+            render={({ field }) => (
+              <>
+                <CheckboxLabel>
+                  <input
+                    type="checkbox"
+                    value="Better planet"
+                    title="Better planet"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const checked = e.target.checked;
+                      field.onChange(
+                        checked
+                          ? [...field.value, value]
+                          : field.value.filter((v) => v !== value)
+                      );
+                    }}
+                    checked={field.value.includes("Better planet")}
+                  />
+                  A desire to contribute to a better planet
+                </CheckboxLabel>
+                <CheckboxLabel>
+                  <input
+                    type="checkbox"
+                    value="Cost savings"
+                    title="Cost savings"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const checked = e.target.checked;
+                      field.onChange(
+                        checked
+                          ? [...field.value, value]
+                          : field.value.filter((v) => v !== value)
+                      );
+                    }}
+                  />
+                  Long-term cost savings
+                </CheckboxLabel>
+              </>
+            )}
+          />
 
-                    <Label>Future Goals</Label>
-                    <TextArea
-                        {...register('futureGoals')}
-                        placeholder="Describe your top sustainable goals"
-                    />
+          <Label>Future Goals</Label>
+          <TextArea
+            {...register("futureGoals")}
+            placeholder="Describe your top sustainable goals"
+          />
 
-                    <Label>Advice & Tools</Label>
-                    <TextArea
-                        {...register('adviceTools')}
-                        placeholder="What tools or advice would help?"
-                    />
+          <Label>Advice & Tools</Label>
+          <TextArea
+            {...register("adviceTools")}
+            placeholder="What tools or advice would help?"
+          />
 
-                    <SubmitButton type="submit">Submit</SubmitButton>
-                </form>
-            </FormWrapper>
-        </Container>
-    );
+          <SubmitButton type="submit">Submit</SubmitButton>
+        </form>
+      </FormWrapper>
+    </Container>
+  );
 };
 
 export default SurveyForm;

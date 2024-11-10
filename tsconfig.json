@@ -5,6 +5,32 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "noEmitOnError": false, // Allows emitting even if there are errors
+    "skipLibCheck": true, // Skips type-checking of declaration files
+    "suppressImplicitAnyIndexErrors": true, // Suppresses implicit any errors on object indexers
+    "strict": false, // Disables all strict type-checking options
+    "noImplicitAny": false, // Allows implicit 'any' types
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
+    "strictBindCallApply": false,
+    "useUnknownInCatchVariables": false,
+    "downlevelIteration": true,
+    "allowJs": true,
+    "checkJs": false,
+    "noFallthroughCasesInSwitch": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": false,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
