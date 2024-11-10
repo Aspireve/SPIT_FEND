@@ -22,6 +22,7 @@ const Footer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [respData, setRespData] = useState(false);
+  const [gphData, setGphData] = useState()
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -44,12 +45,25 @@ const Footer = () => {
       const base64Data = imageSrc.replace(/^data:image\/\w+;base64,/, "");
       const blob = base64ToBlob(base64Data, "image/png");
       formData.append("image", blob, "image.png");
+      // await axiosInstance
+      //   .post("scan/electric", formData)
+      //   .then((data) => {
+      //     console.log(data);
+      //     setRespData(data.data?.electricData);
+      //     setCapturedImage(imageSrc);
+      //   })
+      //   .finally(() => {
+      //     setCapturedImage("imageSrc");
+      //     setIsCameraOpen(false);
+      //   });
       await axiosInstance
-        .post("scan/electric", formData)
+        .get("fetchChart/electric")
         .then((data) => {
           console.log(data);
-          setRespData(data?.electricData);
-          setCapturedImage(imageSrc);
+          setGphData(data?.data?.units?.map((u) => parseInt(u.units)))
+          console.log(first)
+          // setRespData(data.data?.electricData);
+          // setCapturedImage(imageSrc);
         })
         .finally(() => {
           setCapturedImage("imageSrc");
@@ -194,7 +208,7 @@ const Footer = () => {
               margin="dense"
             />
             <div style={{ marginBottom: "1.875rem" }}>
-              <ElectricityTrend topData={null} />
+              <ElectricityTrend topData={gphData} />
             </div>
           </DialogContent>
 
