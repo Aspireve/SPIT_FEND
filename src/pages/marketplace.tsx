@@ -33,6 +33,7 @@ const Marketplace: React.FC = () => {
   const [uploadResponse, setUploadResponse] = useState(null);
   const [uploadError, setUploadError] = useState(null);
   const [responseData, setResponseData] = useState();
+  const [recycle, setrecycle] = useState("");
 
   const handleAddItemClick = () => {
     setIsCameraOpen(true);
@@ -67,7 +68,8 @@ const Marketplace: React.FC = () => {
           setResponseData(data.data.response);
           console.log(data.data.response.itemDescription);
           setObjectName(`${data.data.response.itemDescription}`);
-          setPrice(`${data.data.response.price}`);
+          setPrice(`${data.data.response.rate || ""}`);
+          setrecycle(`${data.data.response.itemType}`);
           setCapturedImage(imageSrc);
           setIsCameraOpen(false);
           setIsModalOpen(true);
@@ -337,12 +339,13 @@ const Marketplace: React.FC = () => {
           />
           <TextField
             label="Price per unit in Rs"
-            type="number"
+            // type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             fullWidth
             margin="dense"
           />
+          <a>{recycle}</a>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleModalClose}>Cancel</Button>
