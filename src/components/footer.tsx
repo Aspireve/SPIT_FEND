@@ -61,7 +61,6 @@ const Footer = () => {
         .then((data) => {
           console.log(data);
           setGphData(data?.data?.units?.map((u) => parseInt(u.units)))
-          console.log(first)
           // setRespData(data.data?.electricData);
           // setCapturedImage(imageSrc);
         })
