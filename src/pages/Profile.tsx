@@ -1,11 +1,14 @@
 import Footer from "@/components/footer";
 import { IoArrowBack } from "react-icons/io5";
 import { FaCamera } from "react-icons/fa";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Card } from 'antd';
+import EcoPointsPieChart from "@/graphs/EcoPointsPieChart";
+import ElectricityTrend from "@/graphs/ElectricityTrend";
+import WaterTrend from "@/graphs/WaterTrend";
+import GeneralTrend from "@/graphs/GeneralTrend";
 
 const Profile = () => {
-  const [currentActive, setCurrentActive] = useState(0);
 
   const navigate = useNavigate();
   return (
@@ -14,7 +17,25 @@ const Profile = () => {
         <IoArrowBack size={24} color="#177d54" onClick={() => navigate(-1)} />
         <FaCamera size={24} color="#177d54" />
       </section>
-      Profile
+      <div style={{ padding: "24px", paddingBottom: "60px" }}>
+        <h1 className="font-bold text-xl text-black">Profile Ananlytics</h1>
+        <div style={{ padding: "24px" }}>
+          <Card style={{ maxWidth: 800, margin: "0 auto" }}>
+            <EcoPointsPieChart />
+          </Card>
+        </div>
+        <div style={{ maxWidth: "800px", margin: "20px auto" }}>
+          <div style={{ marginBottom: "1.875rem" }}>
+            <ElectricityTrend />
+          </div>
+          <div style={{ marginBottom: "1.875rem" }}>
+            <WaterTrend />
+          </div>
+          <div style={{ marginBottom: "1.875rem" }}>
+            <GeneralTrend />
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   );
