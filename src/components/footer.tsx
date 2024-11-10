@@ -45,17 +45,17 @@ const Footer = () => {
       const base64Data = imageSrc.replace(/^data:image\/\w+;base64,/, "");
       const blob = base64ToBlob(base64Data, "image/png");
       formData.append("image", blob, "image.png");
-      // await axiosInstance
-      //   .post("scan/electric", formData)
-      //   .then((data) => {
-      //     console.log(data);
-      //     setRespData(data.data?.electricData);
-      //     setCapturedImage(imageSrc);
-      //   })
-      //   .finally(() => {
-      //     setCapturedImage("imageSrc");
-      //     setIsCameraOpen(false);
-      //   });
+      await axiosInstance
+        .post("scan/electric", formData)
+        .then((data) => {
+          console.log(data);
+          setRespData(data.data?.electricData);
+          setCapturedImage(imageSrc);
+        })
+        .finally(() => {
+          setCapturedImage("imageSrc");
+          setIsCameraOpen(false);
+        });
       await axiosInstance
         .get("fetchChart/electric")
         .then((data) => {
