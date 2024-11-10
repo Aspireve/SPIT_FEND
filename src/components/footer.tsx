@@ -103,7 +103,7 @@ const Footer = () => {
       )}
       <nav className="fixed bottom-0 flex justify-between w-full px-5 py-2 pt-3 bg-white">
         <div className=" absolute -top-1/2 right-1/2 translate-x-1/2 w-16 bg-gradient-to-b from-transparent to-[#f2f3f7] rounded-ee-full rounded-es-full h-16 flex items-center justify-center">
-          <div className="flex items-center justify-center rounded-full border-4 border-white shadow-lg flex-col bg-[#177d54] p-3 ">
+          <div onClick={() => handleAddItemClick()} className="flex items-center justify-center rounded-full border-4 border-white shadow-lg flex-col bg-[#177d54] p-3 ">
             <FaCamera size={20} color="#fff" className="shadow-md" />
           </div>
         </div>
