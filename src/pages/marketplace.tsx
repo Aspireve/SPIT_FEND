@@ -265,7 +265,12 @@ const Marketplace: React.FC = () => {
           </h5>
           <div className="flex gap-5 mt-5 overflow-scroll">
             <div className="w-[300vw] flex gap-5">
-              <div className="h-48 w-48 bg-[url('./SKScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
+              <div className="relative h-48 w-48 overflow-hidden rounded-md z-0 p-5 justify-end flex flex-col">
+                <img
+                  src="./SKScrap.jpg"
+                  alt="back"
+                  className="h-full w-full absolute top-0 left-0"
+                />
                 <p className="z-10 font-bold text-left text-white">
                   S.K Scrap Traders
                 </p>
@@ -273,7 +278,12 @@ const Marketplace: React.FC = () => {
                   Address: Rd No. 12, M.I.D.C, Andheri (E)
                 </p>
               </div>
-              <div className="h-48 w-48 bg-[url('./Battery-Scrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
+              <div className="h-48 w-48 relative overflow-hidden rounded-md z-0 p-5 justify-end flex flex-col">
+                <img
+                  src="./Battery-Scrap.jpg"
+                  alt="back"
+                  className="h-full w-full absolute top-0 left-0"
+                />
                 <p className="z-10 font-bold text-left text-white">
                   Khan Scrap Dealer
                 </p>
@@ -281,7 +291,12 @@ const Marketplace: React.FC = () => {
                   Address: Rd Number 11, Chakala Industrial Area (MIDC)
                 </p>
               </div>
-              <div className="h-48 w-48 bg-[url('./KhanScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
+              <div className="h-48 w-48 relative overflow-hidden rounded-md z-0 p-5 justify-end flex flex-col">
+                <img
+                  src="./KhanScrap.jpg"
+                  alt="back"
+                  className="h-full w-full absolute top-0 left-0"
+                />
                 <p className="z-10 font-bold text-left text-white">
                   S.K V EWaste Traders
                 </p>
@@ -289,7 +304,12 @@ const Marketplace: React.FC = () => {
                   Address: A-103 SHIV SHAKTI,CHS 1ST FLOOR,ANDHERI
                 </p>
               </div>
-              <div className="h-48 w-48 bg-[url('./BangarBecho.png')] rounded-md z-0 p-5 justify-end flex flex-col">
+              <div className="h-48 w-48 relative overflow-hidden rounded-md z-0 p-5 justify-end flex flex-col">
+                <img
+                  src="./BangarBecho.png"
+                  alt="back"
+                  className="h-full w-full absolute top-0 left-0"
+                />
                 <p className="z-10 font-bold text-left text-white">
                   Bhangar Becho
                 </p>

@@ -35,7 +35,7 @@ const EcoPoints = () => {
         description: "₹200 off on organic fruits & vegetables",
         validity: "Valid for 14 days",
         additional: "Min. spend: ₹1,000",
-        image: "src/assets/images/bigbasket.png",
+        image: "./bigbasket.png",
         badge: "Trending",
         badgeSymbol: "🌟",
         // Badge symbol
@@ -48,7 +48,7 @@ const EcoPoints = () => {
         description: "₹750 off on sustainable fashion and home products",
         validity: "Valid for 60 days",
         additional: "Min. spend: ₹3,000",
-        image: "src/assets/images/fabindia5090.jpg",
+        image: "./fabindia5090.jpg",
         badge: "Limited Time",
         badgeSymbol: "⏳", // Badge symbol
       },
@@ -60,7 +60,7 @@ const EcoPoints = () => {
         description: "₹400 off on sustainable home decor",
         validity: "Valid for 30 days",
         additional: "Min. spend: ₹1,500",
-        image: "src/assets/images/motherearth.png",
+        image: "./motherearth.png",
         badge: "Member's Choice",
         badgeSymbol: "🏆", // Badge symbol
       },
@@ -72,7 +72,7 @@ const EcoPoints = () => {
         description: "₹150 off on bamboo toiletries and eco-friendly cleaners",
         validity: "Valid for 21 days",
         additional: "Min. spend: ₹800",
-        image: "src/assets/images/24seven.png",
+        image: "./24seven.png",
         badge: "Quick Redeem",
         badgeSymbol: "⚡", // Badge symbol
       },
@@ -84,7 +84,7 @@ const EcoPoints = () => {
         description: "₹1000 off on bulk grocery shopping",
         validity: "Valid for 45 days",
         additional: "Min. spend: ₹5,000",
-        image: "src/assets/images/metro_cashandcarry.jpg",
+        image: "./metro_cashandcarry.jpg",
         badge: "Best Value",
         badgeSymbol: "💎", // Badge symbol
       },
@@ -96,7 +96,7 @@ const EcoPoints = () => {
         description: "₹200 off on eco-friendly skincare and beauty products",
         validity: "Valid for 45 days",
         additional: "Min. spend: ₹1,000",
-        image: "src/assets/images/thebodyshop.webp",
+        image: "./thebodyshop.webp",
         badge: "Exclusive",
         badgeSymbol: "✨", // Badge symbol
       },
@@ -108,7 +108,7 @@ const EcoPoints = () => {
         description: "₹600 off on eco-friendly and organic cotton clothing",
         validity: "Valid for 30 days",
         additional: "Min. spend: ₹2,500",
-        image: "src/assets/images/greenware-logo.png",
+        image: "./greenware-logo.png",
         badge: "New Arrival",
         badgeSymbol: "🆕", // Badge symbol
       },
@@ -120,7 +120,7 @@ const EcoPoints = () => {
         description: "₹300 off on plant-based groceries and snacks",
         validity: "Valid for 14 days",
         additional: "Min. spend: ₹1,500",
-        image: "src/assets/images/spar.png",
+        image: "./spar.png",
         badge: "Flash Deal",
         badgeSymbol: "⚡", // Badge symbol
       },
@@ -132,7 +132,7 @@ const EcoPoints = () => {
         description: "₹400 off on natural and organic beauty products",
         validity: "Valid for 30 days",
         additional: "Min. spend: ₹1,500",
-        image: "src/assets/images/Forest-Essentials-Logo.png",
+        image: "./Forest-Essentials-Logo.png",
         badge: "Trending",
         badgeSymbol: "🌟", // Badge symbol
       },
@@ -144,7 +144,7 @@ const EcoPoints = () => {
         description: "₹450 off on eco-conscious home products",
         validity: "Valid for 60 days",
         additional: "Min. spend: ₹2,500",
-        image: "src/assets/images/chumbak-logo.png",
+        image: "./chumbak-logo.png",
         badge: "Limited Edition",
         badgeSymbol: "🔒", // Badge symbol
       },
@@ -156,7 +156,7 @@ const EcoPoints = () => {
         description: "₹750 off on eco-friendly outdoor gear and apparel",
         validity: "Valid for 45 days",
         additional: "Min. spend: ₹3,000",
-        image: "src/assets/images/wildcraft-logo.png",
+        image: "./wildcraft-logo.png",
         badge: "Best Seller",
         badgeSymbol: "🏅", // Badge symbol
       },
@@ -169,7 +169,7 @@ const EcoPoints = () => {
           "₹200 off on eco-friendly cleaning and personal care products",
         validity: "Valid for 21 days",
         additional: "Min. spend: ₹800",
-        image: "src/assets/images/amyway-logo.png",
+        image: "./amyway-logo.png",
         badge: "Hot Deal",
         badgeSymbol: "🔥", // Badge symbol
       },
@@ -181,7 +181,7 @@ const EcoPoints = () => {
         description: "₹700 off on sustainable and stylish home accessories",
         validity: "Valid for 60 days",
         additional: "Min. spend: ₹2,500",
-        image: "src/assets/images/Zara-Home-logo.png",
+        image: "./Zara-Home-logo.png",
         badge: "Eco-Luxe",
         badgeSymbol: "💎", // Badge symbol
       },
