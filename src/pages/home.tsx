@@ -181,7 +181,7 @@ const Home = () => {
               <p>Eco Points</p>
             </div>
             <div className="flex items-end gap-2">
-              <h1 className="inline text-4xl font-bold text-black">61</h1>
+              <h1 className="inline text-4xl font-bold text-black">345</h1>
               <p className="inline">points</p>
             </div>
           </div>
