@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Button,
   TextField,
@@ -12,6 +13,7 @@ import Webcam from "react-webcam";
 import Footer from "@/components/footer";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "@/lib/axiosInstance";
 
 interface Item {
   objectName: string;
@@ -28,6 +30,8 @@ const Marketplace: React.FC = () => {
   const [price, setPrice] = useState<number | string>("");
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [items, setItems] = useState<Item[]>([]);
+  const [uploadResponse, setUploadResponse] = useState(null);
+  const [uploadError, setUploadError] = useState(null);
 
   const handleAddItemClick = () => {
     setIsCameraOpen(true);
@@ -61,14 +65,43 @@ const Marketplace: React.FC = () => {
     handleModalClose();
   };
 
+  // Function to handle image upload to the backend
+  const handleImageUpload = async () => {
+    if (!capturedImage) {
+      alert("Please capture an image first.");
+      return;
+    }
+
+    const formData = new FormData();
+    const blob = await fetch(capturedImage).then((res) => res.blob());
+    formData.append("image", blob, "captured.jpg");
+
+    try {
+      const res = await axiosInstance.post(
+        "marketplace/isRecycleable",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
+        }
+      );
+      console.log(res.data);
+      setUploadResponse(res.data);
+      setUploadError(null);
+    } catch (error) {
+      setUploadError(error.response?.data || "Failed to upload image");
+      setUploadResponse(null);
+    }
+  };
+
   const webcamRef = React.useRef<Webcam>(null);
   const navigate = useNavigate();
 
   return (
     <div className="bg-gradient-to-br from-[#04894a] to-[#0f8951] min-h-screen">
-      <div className="text-white px-5 py-4 flex gap-4 items-center">
+      <div className="flex items-center gap-4 px-5 py-4 text-white">
         <IoIosArrowBack color="#fff" size={20} onClick={() => navigate(-1)} />
-        <h1 className="text-white font-semibold text-left text-lg">
+        <h1 className="text-lg font-semibold text-left text-white">
           Marketplace
         </h1>
       </div>
@@ -89,9 +122,7 @@ const Marketplace: React.FC = () => {
               ref={webcamRef}
               screenshotFormat="image/jpeg"
               width="100%"
-              videoConstraints={{
-                facingMode: "environment",
-              }}
+              videoConstraints={{ facingMode: "environment" }}
             />
             <Button
               variant="contained"
@@ -138,7 +169,7 @@ const Marketplace: React.FC = () => {
                     width: "65px",
                     height: "65px",
                     objectFit: "cover",
-                    marginRight: "20px", // Adds space between image and text
+                    marginRight: "20px",
                     borderRadius: "5px",
                   }}
                 />
@@ -168,47 +199,35 @@ const Marketplace: React.FC = () => {
         >
           Add Item
         </Button>
-        <div className="w-[90%] ml-auto mt-5">
-          <h5 className="text-lg text-left font-semibold ">
-            Select your recycling partner
-          </h5>
-          <div className="flex overflow-scroll gap-5 mt-5">
-            <div className="w-[300vw] flex gap-5">
-              <div className="h-48 w-48 bg-[url('./SKScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
-                  S.K Scrap Traders
-                </p>
-                <p className="text-left text-[#fff] z-10 text-sm">
-                  Address: Rd No. 12, M.I.D.C, Andheri (E)
-                </p>
-              </div>
-              <div className="h-48 w-48 bg-[url('./Battery-Scrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
-                  Khan Scrap Dealer
-                </p>
-                <p className="text-left text-[#fff] z-10 text-sm">
-                  Address: Rd Number 11, Chakala Industrial Area (MIDC)
-                </p>
-              </div>
-              <div className="h-48 w-48 bg-[url('./KhanScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
-                  S.K V EWaste Traders
-                </p>
-                <p className="text-left text-[#fff] z-10 text-sm">
-                  Address: A-103 SHIV SHAKTI,CHS 1ST FLOOR,ANDHERI
-                </p>
-              </div>
-              <div className="h-48 w-48 bg-[url('./BangarBecho.png')] rounded-md z-0 p-5 justify-end flex flex-col">
-                <p className="text-left text-white z-10 font-bold">
-                  Bhangar Becho
-                </p>
-                <p className="text-left text-[#fff] z-10 text-sm">
-                  Address: Mumbai, MH, India
-                </p>
-              </div>
-            </div>
+
+        {/* Upload Image Button */}
+        <Button
+          variant="contained"
+          onClick={handleImageUpload}
+          // disabled={!capturedImage}
+          sx={{
+            width: "80%",
+            backgroundColor: "#0d8a50",
+            color: "#fff",
+            fontWeight: "bold",
+            marginTop: "10px",
+          }}
+        >
+          Upload Electric Bill
+        </Button>
+
+        {uploadResponse && (
+          <div>
+            <h3>Upload Response:</h3>
+            <pre>{JSON.stringify(uploadResponse, null, 2)}</pre>
           </div>
-        </div>
+        )}
+        {uploadError && (
+          <div style={{ color: "red" }}>
+            <h3>Upload Error:</h3>
+            <pre>{JSON.stringify(uploadError, null, 2)}</pre>
+          </div>
+        )}
       </div>
 
       <Dialog
