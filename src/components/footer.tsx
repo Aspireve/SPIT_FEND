@@ -16,6 +16,7 @@ const Footer = () => {
 
   const handleCapture = () => {
     const imageSrc = webcamRef.current?.getScreenshot();
+    setSelectedOption(null)
     if (imageSrc) {
       setCapturedImage(imageSrc);
       setIsCameraOpen(false);
