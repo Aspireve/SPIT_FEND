@@ -7,7 +7,6 @@
   "compilerOptions": {
     "noEmitOnError": false, // Allows emitting even if there are errors
     "skipLibCheck": true, // Skips type-checking of declaration files
-    "suppressImplicitAnyIndexErrors": true, // Suppresses implicit any errors on object indexers
     "strict": false, // Disables all strict type-checking options
     "noImplicitAny": false, // Allows implicit 'any' types
     "noImplicitThis": false,
