@@ -8,7 +8,6 @@ import { FaLeaf, FaBolt, FaTrashAlt, FaSun } from "react-icons/fa"; // Ensure th
 import Footer from "@/components/footer";
 import { useNavigate } from "react-router-dom";
 
-
 const facts = [
   {
     icon: <GiNuclearWaste style={{ fontSize: 40, color: "#FF5733" }} />,
@@ -54,7 +53,7 @@ const Home = () => {
     // Function to update the width of the container
     const updateWidth = () => {
       if (containerRef.current) {
-        console.log(containerRef?.current?.offsetWidth);
+        // console.log(containerRef?.current?.offsetWidth);
         setContainerWidth(containerRef?.current?.offsetWidth + 95);
       }
     };
@@ -68,7 +67,7 @@ const Home = () => {
       window.removeEventListener("resize", updateWidth);
     };
   }, []);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
 
@@ -77,13 +76,15 @@ const Home = () => {
   };
 
   const handlePrevFact = () => {
-    setCurrentFactIndex((prevIndex: number) => (prevIndex - 1 + facts.length) % facts.length);
+    setCurrentFactIndex(
+      (prevIndex: number) => (prevIndex - 1 + facts.length) % facts.length
+    );
   };
 
   return (
     <div className="h-screen w-full bg-[#f2f3f7] bg-gradient-to-br from-[#04894a] to-[#0f8951]">
-      <section className="px-5 py-4 pb-3 flex justify-between">
-        <div className="flex gap-2 items-center justify-center">
+      <section className="flex justify-between px-5 py-4 pb-3">
+        <div className="flex items-center justify-center gap-2">
           <RiMenu2Line color="#fff" size={20} />
           <img
             src="./profile.jpeg"
@@ -91,15 +92,15 @@ const Home = () => {
           />
           <div>
             <p className="text-xs text-white">Afternoon,</p>
-            <h1 className="text-base font-semibold text-white leading-5">
+            <h1 className="text-base font-semibold leading-5 text-white">
               Johnn Doe
             </h1>
           </div>
         </div>
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex items-center justify-center gap-2">
           <div className="bg-[#fff3] flex gap-2 items-center justify-center p-1 px-2">
             <PiCoinVerticalFill size={20} color="#ecc355" />
-            <p className="text-white font-semibold">345</p>
+            <p className="font-semibold text-white">345</p>
           </div>
           <FaRegBell size={20} color="#fff" />
         </div>
@@ -107,17 +108,20 @@ const Home = () => {
       <div className="-z-0 fixed bottom-0 h-3/4 w-full bg-[#f2f3f7] rounded-se-[5rem] rounded-ss-[5rem]"></div>
       <section className="relative bg-[#f3f4f9] h-56 w-56 m-auto rounded-lg shadow-lg z-30 mt-9 flex items-center justify-center">
         <div className="p-5 bg-[#000] bg-gradient-to-tr from-[#80c678] to-[#3fb36a] rounded-full h-fit w-fit shadow-lg">
-          <div className=" rounded-full bg-white flex items-center justify-center h-fit w-fit p-8 shadow-lg" onClick={() => navigate("/ecolevelsystem")}>
-            <img src="./bio-energy.png" className="h-20 w-20" />
+          <div
+            className="flex items-center justify-center p-8 bg-white rounded-full shadow-lg  h-fit w-fit"
+            onClick={() => navigate("/ecolevelsystem")}
+          >
+            <img src="./bio-energy.png" className="w-20 h-20" />
           </div>
         </div>
       </section>
-      <section className="text-black relative w-11/12 m-auto mt-5 pb-10">
-        <h2 className="font-semibold text-lg">Your Statistics</h2>
+      <section className="relative w-11/12 pb-10 m-auto mt-5 text-black">
+        <h2 className="text-lg font-semibold">Your Statistics</h2>
         <div className="grid grid-cols-2 grid-rows-2 gap-4 mt-5">
           <div
             ref={containerRef}
-            className="relative col-span-1 row-span-2 flex flex-col items-center bg-white shadow-2xl rounded-xl"
+            className="relative flex flex-col items-center col-span-1 row-span-2 bg-white shadow-2xl rounded-xl"
           >
             <LineChart
               xAxis={[{ data: [1, 2, 3, 5, 8, 10, 11, 12, 13, 15, 18, 20] }]}
@@ -153,44 +157,64 @@ const Home = () => {
                 </defs>
               </svg>
             </LineChart>
-            <p className="absolute top-5 inline">Energy</p>
-            <h1 className="absolute font-bold text-4xl inline bottom-2 text-black">421</h1>
+            <p className="absolute inline top-5">Energy</p>
+            <h1 className="absolute inline text-4xl font-bold text-black bottom-2">
+              421
+            </h1>
           </div>
-          <div className="col-span-1 row-span-1 flex flex-col bg-white shadow-2xl p-4 rounded-xl">
+          <div className="flex flex-col col-span-1 row-span-1 p-4 bg-white shadow-2xl rounded-xl">
             <div className="flex gap-1">
               <FaRupeeSign size={20} color="#ecc355" />
               <p>Rewards</p>
             </div>
             <div className="flex items-end gap-2">
-              <h1 className="font-bold text-4xl inline text-black">421</h1>
+              <h1 className="inline text-4xl font-bold text-black">421</h1>
               <p className="inline">rupees</p>
             </div>
           </div>
-          <div className="col-span-1 row-span-1 flex flex-col bg-white shadow-2xl rounded-xl p-4" onClick={() => navigate("/ecolevelsystem")}>
+          <div
+            className="flex flex-col col-span-1 row-span-1 p-4 bg-white shadow-2xl rounded-xl"
+            onClick={() => navigate("/ecolevelsystem")}
+          >
             <div className="flex gap-1">
               <FaStar size={20} color="#ecc355" />
               <p>Eco Points</p>
             </div>
             <div className="flex items-end gap-2">
-              <h1 className="font-bold text-4xl inline text-black">61</h1>
+              <h1 className="inline text-4xl font-bold text-black">61</h1>
               <p className="inline">points</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="text-black relative w-11/12 m-auto pb-28">
-        <h2 className="font-semibold text-lg">Did You Know?</h2>
-        <div className="bg-white shadow-2xl rounded-xl p-4 mt-4 flex items-center justify-center">
-          <button onClick={handlePrevFact} className="mr-4 bg-gray-300 p-2 rounded-full">&lt;</button>
+      <section className="relative w-11/12 m-auto text-black pb-28">
+        <h2 className="text-lg font-semibold">Did You Know?</h2>
+        <div className="flex items-center justify-center p-4 mt-4 bg-white shadow-2xl rounded-xl">
+          <button
+            onClick={handlePrevFact}
+            className="p-2 mr-4 bg-gray-300 rounded-full"
+          >
+            &lt;
+          </button>
           <div className="flex flex-col items-center text-center">
             {facts[currentFactIndex].icon}
             <p className="mt-2">{facts[currentFactIndex].fact}</p>
-            <a href={facts[currentFactIndex].link} target="_blank" rel="noopener noreferrer" className="text-blue-500 mt-1">
+            <a
+              href={facts[currentFactIndex].link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 text-blue-500"
+            >
               {facts[currentFactIndex].source}
             </a>
           </div>
-          <button onClick={handleNextFact} className="ml-4 bg-gray-300 p-2 rounded-full">&gt;</button>
+          <button
+            onClick={handleNextFact}
+            className="p-2 ml-4 bg-gray-300 rounded-full"
+          >
+            &gt;
+          </button>
         </div>
       </section>
       <Footer />

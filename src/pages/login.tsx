@@ -1,6 +1,8 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
+import { axiosInstance } from "@/lib/axiosInstance";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Form, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const Container = styled.div`
   background-color: #f2f3f7;
@@ -33,9 +35,8 @@ const Title = styled.h2`
   color: #0b894a;
   margin-bottom: 20px;
   font-size: 24px;
-    font-weight: 600;
-    text-align: center;
-
+  font-weight: 600;
+  text-align: center;
 `;
 
 const Input = styled.input`
@@ -64,46 +65,50 @@ const SubmitButton = styled.button`
 `;
 
 type FormValues = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 const LoginPage: React.FC = () => {
-    const { register, handleSubmit } = useForm<FormValues>();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<FormValues>();
 
-    const onSubmit = (data: FormValues) => {
-        console.log('Login Data:', data);
-    };
+  const onSubmit = async (data: FormValues) => {
+    await axiosInstance.post("auth/login", data).then((res) => {
+      console.log(res.data.token.accessToken);
+      localStorage.setItem("accessToken", res.data.token.accessToken);
+      navigate("/home");
+    });
+  };
 
-    return (
-        <Container>
-            <FormWrapper>
-                <Logo
-                    src="src/assets/images/bio-energy.png"
-                    alt="Green Logo"
-                />
-                <Title>Login Page</Title>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input
-                        type="email"
-                        {...register('email')}
-                        placeholder="Email"
-                        required
-                    />
-                    <Input
-                        type="password"
-                        {...register('password')}
-                        placeholder="Password"
-                        required
-                    />
-                    <SubmitButton type="submit">Login</SubmitButton>
-                </form>
-                <div>
-                    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
-                </div>
-            </FormWrapper>
-        </Container>
-    );
+  return (
+    <Container>
+      <FormWrapper>
+        <Logo src="src/assets/images/bio-energy.png" alt="Green Logo" />
+        <Title>Login Page</Title>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            type="email"
+            {...register("email")}
+            placeholder="Email"
+            required
+          />
+          <Input
+            type="password"
+            {...register("password")}
+            placeholder="Password"
+            required
+          />
+          <SubmitButton type="submit">Login</SubmitButton>
+        </form>
+        <div>
+          <p>
+            Don't have an account? <a href="/signup">Sign Up</a>
+          </p>
+        </div>
+      </FormWrapper>
+    </Container>
+  );
 };
 
 export default LoginPage;

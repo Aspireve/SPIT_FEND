@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND,
+  baseURL: "https://backend-spit.onrender.com/v1/",
 });
 
 let isOffline = !navigator.onLine;
@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use(
       }
       return config;
     } else {
-      throw Error("Connect to an Internet Connection First")
+      throw Error("Connect to an Internet Connection First");
     }
   },
   (error) => {

@@ -1,6 +1,8 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
+import { axiosInstance } from "@/lib/axiosInstance";
+import React from "react";
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #f2f3f7;
@@ -60,60 +62,60 @@ const SubmitButton = styled.button`
 `;
 
 type FormValues = {
-    name: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
+  // name: string;
+  email: string;
+  password: string;
+  // confirmPassword: string;
 };
 
 const SignUpPage: React.FC = () => {
-    const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<FormValues>();
+  const navigate = useNavigate();
 
-    const onSubmit = (data: FormValues) => {
-        console.log('Sign Up Data:', data);
-    };
+  const onSubmit = async (data: FormValues) => {
+    console.log("Sign Up Data:", data);
+    await axiosInstance.post("/auth/register", data);
+    navigate("/home");
+  };
 
-    return (
-        <Container>
-            <FormWrapper>
-                <Logo
-                    src="src/assets/images/bio-energy.png"
-                    alt="Green Logo"
-                />
-                <Title>Sign Up</Title>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input
-                        type="text"
-                        {...register('name')}
-                        placeholder="Username"
-                        required
-                    />
-                    <Input
-                        type="email"
-                        {...register('email')}
-                        placeholder="Email"
-                        required
-                    />
-                    <Input
-                        type="password"
-                        {...register('password')}
-                        placeholder="Password"
-                        required
-                    />
-                    <Input
-                        type="password"
-                        {...register('confirmPassword')}
-                        placeholder="Confirm Password"
-                        required
-                    />
-                    <SubmitButton type="submit">Sign Up</SubmitButton>
-                </form>
-                <div>
-                    Already have an account? <a href="/login">Login</a>
-                </div>
-            </FormWrapper>
-        </Container>
-    );
+  return (
+    <Container>
+      <FormWrapper>
+        <Logo src="src/assets/images/bio-energy.png" alt="Green Logo" />
+        <Title>Sign Up</Title>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            type="text"
+            {...register("name")}
+            placeholder="Username"
+            required
+          />
+          <Input
+            type="email"
+            {...register("email")}
+            placeholder="Email"
+            required
+          />
+          <Input
+            type="password"
+            {...register("password")}
+            placeholder="Password"
+            required
+          />
+          <Input
+            type="password"
+            {...register("confirmPassword")}
+            placeholder="Confirm Password"
+            required
+          />
+          <SubmitButton type="submit">Sign Up</SubmitButton>
+        </form>
+        <div>
+          Already have an account? <a href="/login">Login</a>
+        </div>
+      </FormWrapper>
+    </Container>
+  );
 };
 
 export default SignUpPage;

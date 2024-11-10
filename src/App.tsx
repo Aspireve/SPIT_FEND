@@ -9,11 +9,10 @@ import LeaderBoard from "./pages/leaderboard";
 import Marketplace from "./pages/marketplace";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/survey" element={<SurveyForm />} />
         <Route path="/leaderboard" element={<LeaderBoard />} />
         <Route path="/login" element={<LoginPage />} />
