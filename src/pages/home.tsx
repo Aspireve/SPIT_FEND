@@ -6,6 +6,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import { LineChart } from "@mui/x-charts";
 import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/footer";
+import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
@@ -30,6 +31,7 @@ const Home = () => {
       window.removeEventListener("resize", updateWidth);
     };
   }, []);
+  const navigate = useNavigate()
   return (
     <div className="h-screen w-full bg-[#f2f3f7] bg-gradient-to-br from-[#04894a] to-[#0f8951]">
       <section className="px-5 py-4 pb-3 flex justify-between">
@@ -57,7 +59,7 @@ const Home = () => {
       <div className="-z-0 fixed bottom-0 h-3/4 w-full bg-[#f2f3f7] rounded-se-[5rem] rounded-ss-[5rem]"></div>
       <section className="relative bg-[#f3f4f9] h-56 w-56 m-auto rounded-lg shadow-lg z-30 mt-9 flex items-center justify-center">
         <div className="p-5 bg-[#000] bg-gradient-to-tr from-[#80c678] to-[#3fb36a] rounded-full h-fit w-fit shadow-lg">
-          <div className=" rounded-full bg-white flex items-center justify-center h-fit w-fit p-8 shadow-lg">
+          <div className=" rounded-full bg-white flex items-center justify-center h-fit w-fit p-8 shadow-lg" onClick={() => navigate("/ecolevelsystem")}>
             <img src="./bio-energy.png" className="h-20 w-20" />
           </div>
         </div>
@@ -116,7 +118,7 @@ const Home = () => {
               <p className="inline">rupees</p>
             </div>
           </div>
-          <div className="col-span-1 row-span-1 flex flex-col bg-white shadow-2xl rounded-xl p-4">
+          <div className="col-span-1 row-span-1 flex flex-col bg-white shadow-2xl rounded-xl p-4" onClick={() => navigate("/ecolevelsystem")}>
             <div className="flex gap-1">
               <FaStar size={20} color="#ecc355" />
               <p>Eco Points</p>

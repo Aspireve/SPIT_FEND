@@ -23,8 +23,8 @@ const Footer = () => {
         <p className="text-sm">Rank</p>
       </div>
       <div className="flex-[0.5]"></div>
-      <div className="flex flex-1 items-center flex-col">
-        <FaStore size={20} />
+      <div onClick={() => navigate("/marketplace")} className={`flex flex-1 items-center flex-col ${window.location.pathname === "/marketplace" && "text-[#177d54]"}`}>
+        <FaStore size={20} color={window.location.pathname === "/marketplace" ? "#177d54" : "#000"}/>
         <p className="text-sm">Market</p>
       </div>
       <div className="flex flex-1 items-center flex-col">
