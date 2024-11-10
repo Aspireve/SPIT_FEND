@@ -66,7 +66,7 @@ const Marketplace: React.FC = () => {
         .post("marketplace/isRecycleable", formData)
         .then((data) => {
           console.log(data);
-          setResponseData(data.response)
+          setResponseData(data.data.response)
           console.log(data.data.response.itemDescription)
           setObjectName(`${data.data.response.itemDescription}`);
           setPrice(`${data.data.response.price}`);
@@ -120,7 +120,7 @@ const Marketplace: React.FC = () => {
       setUploadResponse(res.data);
       setUploadError(null);
     } catch (error) {
-      setUploadError(error.response?.data || "Failed to upload image");
+      setUploadError(error?.response?.data || "Failed to upload image");
       setUploadResponse(null);
     }
   };
