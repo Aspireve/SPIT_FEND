@@ -32,17 +32,48 @@ const Marketplace: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [uploadResponse, setUploadResponse] = useState(null);
   const [uploadError, setUploadError] = useState(null);
+  const [responseData, setResponseData] = useState()
 
   const handleAddItemClick = () => {
     setIsCameraOpen(true);
   };
 
-  const handleCapture = () => {
+
+
+  const base64ToBlob = (base64, mimeType = "image/png") => {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: mimeType });
+  };
+
+  const handleCapture = async () => {
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
-      setCapturedImage(imageSrc);
-      setIsCameraOpen(false);
-      setIsModalOpen(true);
+      console.log(imageSrc);
+      const formData = new FormData();
+      const base64Data = imageSrc.replace(/^data:image\/\w+;base64,/, "");
+
+      // Convert Base64 string to a Blob
+      const blob = base64ToBlob(base64Data, "image/png");
+      formData.append("image", blob, 'image.png');
+      await axiosInstance
+        .post("marketplace/isRecycleable", formData)
+        .then((data) => {
+          console.log(data);
+          setResponseData(data.response)
+          console.log(data.data.response.itemDescription)
+          setObjectName(`${data.data.response.itemDescription}`);
+          setPrice(`${data.data.response.price}`);
+          setCapturedImage(imageSrc);
+          setIsCameraOpen(false);
+          setIsModalOpen(true);
+        });
     }
   };
 
@@ -204,7 +235,7 @@ const Marketplace: React.FC = () => {
         <Button
           variant="contained"
           onClick={handleImageUpload}
-          // disabled={!capturedImage}
+          disabled={isCameraOpen || items.length === 0}
           sx={{
             width: "80%",
             backgroundColor: "#0d8a50",
@@ -228,8 +259,48 @@ const Marketplace: React.FC = () => {
             <pre>{JSON.stringify(uploadError, null, 2)}</pre>
           </div>
         )}
+        <div className="w-[90%] ml-auto mt-5">
+          <h5 className="text-lg text-left font-semibold ">
+            Select your recycling partner
+          </h5>
+          <div className="flex overflow-scroll gap-5 mt-5">
+            <div className="w-[300vw] flex gap-5">
+              <div className="h-48 w-48 bg-[url('./SKScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
+                <p className="text-left text-white z-10 font-bold">
+                  S.K Scrap Traders
+                </p>
+                <p className="text-left text-[#fff] z-10 text-sm">
+                  Address: Rd No. 12, M.I.D.C, Andheri (E)
+                </p>
+              </div>
+              <div className="h-48 w-48 bg-[url('./Battery-Scrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
+                <p className="text-left text-white z-10 font-bold">
+                  Khan Scrap Dealer
+                </p>
+                <p className="text-left text-[#fff] z-10 text-sm">
+                  Address: Rd Number 11, Chakala Industrial Area (MIDC)
+                </p>
+              </div>
+              <div className="h-48 w-48 bg-[url('./KhanScrap.jpg')] rounded-md z-0 p-5 justify-end flex flex-col">
+                <p className="text-left text-white z-10 font-bold">
+                  S.K V EWaste Traders
+                </p>
+                <p className="text-left text-[#fff] z-10 text-sm">
+                  Address: A-103 SHIV SHAKTI,CHS 1ST FLOOR,ANDHERI
+                </p>
+              </div>
+              <div className="h-48 w-48 bg-[url('./BangarBecho.png')] rounded-md z-0 p-5 justify-end flex flex-col">
+                <p className="text-left text-white z-10 font-bold">
+                  Bhangar Becho
+                </p>
+                <p className="text-left text-[#fff] z-10 text-sm">
+                  Address: Mumbai, MH, India
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
       <Dialog
         open={isModalOpen}
         onClose={handleModalClose}
