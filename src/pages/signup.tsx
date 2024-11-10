@@ -81,7 +81,7 @@ const SignUpPage: React.FC = () => {
   return (
     <Container>
       <FormWrapper>
-        <Logo src="src/assets/images/bio-energy.png" alt="Green Logo" />
+        <Logo src="./bio-energy.png" alt="Green Logo" />
         <Title>Sign Up</Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
