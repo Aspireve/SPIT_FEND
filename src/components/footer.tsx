@@ -55,8 +55,16 @@ const Footer = () => {
         />
         <p className="text-sm">Market</p>
       </div>
-      <div className="flex flex-col items-center flex-1">
-        <FaUserCircle size={20} />
+      <div
+        onClick={() => navigate("/profile")}
+        className={`flex flex-col items-center flex-1 ${
+          window.location.pathname === "/profile" && "text-[#177d54]"
+        }`}
+      >
+        <FaUserCircle
+          size={20}
+          color={window.location.pathname === "/profile" ? "#177d54" : "#000"}
+        />
         <p className="text-sm">Profile</p>
       </div>
     </nav>

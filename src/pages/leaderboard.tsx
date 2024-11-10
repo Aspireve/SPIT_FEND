@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const LeaderBoard = () => {
   const [currentActive, setCurrentActive] = useState(0);
-  const [leaderboard, setleaderboard] = useState([]);
+  const [leaderboard, setleaderboard] = useState([
+    { name: "Karthik", points: 1850 },
+    { name: "Sunil", points: 1750 },
+    { name: "Pooja", points: 1600 },
+    { name: "Neha", points: 1450 },
+    { name: "Divya", points: 1200 },
+    { name: "Ramesh", points: 980 },
+  ]);
   const navigate = useNavigate();
   return (
     <div className="h-full w-full bg-[#f2f3f7]">
@@ -96,7 +103,7 @@ const LeaderBoard = () => {
         </section>
 
         <section className="w-full mt-6 overflow-hidden bg-white rounded-3xl">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {leaderboard.map((_, i) => (
             <section
               key={i}
               className={`flex justify-between items-center px-4 py-2 border-b-2 ${
@@ -107,11 +114,11 @@ const LeaderBoard = () => {
                 <p className="text-lg font-bold">{i + 4}</p>
                 <div className="flex items-center gap-5">
                   <img src="./nft1.png" className="w-10 h-10 rounded-full" />
-                  <p>John Doe</p>
+                  <p>{_.name}</p>
                 </div>
               </div>
               <p className="font-semibold text-base text-[#124d31]">
-                2130 Points
+                {_.points} Points
               </p>
             </section>
           ))}

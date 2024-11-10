@@ -7,6 +7,7 @@ import EcoPoints from "./pages/ecopoint";
 import EcoLevelSystem from "./pages/ecolevelsystem";
 import LeaderBoard from "./pages/leaderboard";
 import Marketplace from "./pages/marketplace";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/ecopoint" element={<EcoPoints />} />
         <Route path="/ecolevelsystem" element={<EcoLevelSystem />} />
         <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
